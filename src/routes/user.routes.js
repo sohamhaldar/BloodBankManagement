@@ -7,6 +7,11 @@ const router=Router();
 router.get('/allUsers',getAllUsers);
 router.post('/signin',signUp);
 router.post('/login',login);
+router.get('/',(req,res)=>{
+    res.json({
+        message:"Api Working"
+    })
+})
 
 
 router.post('/addhospital',addHospital);
