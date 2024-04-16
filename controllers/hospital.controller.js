@@ -47,7 +47,7 @@ const addHospital = async (req, res, next) => {
           [hospital.insertId, 8, 0],
         ]]
       );
-      res.status(201).json({
+      res.status(200).json({
         message: "Hospital added successfully",
         data: hospital,
         availablity: available,

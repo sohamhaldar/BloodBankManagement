@@ -9,7 +9,7 @@ const signUp=async(req,res,next)=>{
         );
         console.log(results);
         console.log(fields);
-        res.status(201).json({
+        res.status(200).json({
             message:'User created successfully',
             data:results
         })
@@ -24,7 +24,7 @@ const getAllUsers=async(req,res,next)=>{
         const [results, fields] = await db.execute(
             'SELECT * FROM `user`'
           );
-          res.json({
+          res.status(200).json({
             data:results
           })
     } catch (error) {
@@ -46,7 +46,7 @@ const login=async (req,res,next)=>{
             })
         }
         else{
-            res.json({
+            res.status(200).json({
                 message:'password is wrong',
             })
         }
@@ -62,7 +62,7 @@ const donateBlood=async(req,res,next)=>{
         const{user_id,blood_group,hospital_id,amount}=req.body;
         const [results, fields] = await db.execute('UPDATE availability AS a JOIN hospital AS h ON a.hospital_id = h.hospital_id JOIN blood_group AS bg ON a.blood_id = bg.blood_id SET a.quantity = a.quantity + ? WHERE h.hospital_id = ? AND bg.name = ?;',[amount,hospital_id,blood_group]);
         const[user,fields2]=await db.execute('UPDATE user SET total_donation = total_donation + ? WHERE user_id = ?;',[amount,user_id]);
-        res.json({
+        res.status(200).json({
             message:'blood donated succesfully',
             data:results
         })
