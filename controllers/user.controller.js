@@ -46,7 +46,7 @@ const login=async (req,res,next)=>{
             })
         }
         else{
-            res.status(200).json({
+            res.status(500).json({
                 message:'password is wrong',
             })
         }
